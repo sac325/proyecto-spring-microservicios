@@ -1,0 +1,27 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: servicio-equipos
+          uri: lb://servicio-equipos
+          predicates:
+            - Path=/api/equipos/**
+          filters:
+            - StripPrefix=2
+            - Name: Quiniela
+              args:
+                mensaje: hola mi mensaje personalizado
+                cookieNombre: usuario
+                cookieValor: SergioCabrera
+        - id: servicio-grupos
+          uri: lb://servicio-grupos
+          predicates:
+            - Path=/api/datos/**
+          filters:
+            - StripPrefix=2
+        - id: servicio-partidos-apuestas
+          uri: lb://servicio-partidos-apuestas
+          predicates:
+            - Path=/api/partidos-apuestas/datos/**
+          filters:
+              - StripPrefix=3
