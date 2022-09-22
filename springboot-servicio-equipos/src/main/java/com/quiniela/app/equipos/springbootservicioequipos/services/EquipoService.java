@@ -24,4 +24,18 @@ public class EquipoService implements IEquipoService{
     public Equipo findById(Long id) {
         return equipoDao.findById(id).orElse(null);
     }
+
+	@Override
+	public Equipo save(Equipo equipo) { 
+		return equipoDao.save(equipo);
+	}
+
+	@Override
+	public void deleteById(Long id) {
+//		Equipo equipo = equipoDao.getById(id);
+		equipoDao.deleteById(id);
+		
+	}
+    
+    
 }

@@ -9,4 +9,8 @@ public interface IEquipoService {
     List<Equipo> findAll();
 
     Equipo findById(Long id);
+    
+    Equipo save(Equipo equipo);
+    
+    void deleteById(Long id);
 }
