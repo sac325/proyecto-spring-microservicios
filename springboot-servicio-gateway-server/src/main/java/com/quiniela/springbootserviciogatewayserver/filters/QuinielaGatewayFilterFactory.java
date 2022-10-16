@@ -23,8 +23,8 @@ private final Logger logger = LoggerFactory.getLogger(QuinielaGatewayFilterFacto
     public class Configuracion {
 
         private String mensaje;
-        private String cookieValor;
-        private String cookieNombre;
+        private String cookievalor;
+        private String cookienombre;
 
     }
 
@@ -35,8 +35,8 @@ private final Logger logger = LoggerFactory.getLogger(QuinielaGatewayFilterFacto
 
             logger.info("ejecutando pre gateway filter factory: " + config.mensaje);
             return chain.filter(exchange).then(Mono.fromRunnable(()->{
-                Optional.ofNullable(config.cookieValor).ifPresent(cookie -> {
-                    exchange.getResponse().addCookie(ResponseCookie.from(config.cookieNombre,cookie).build());
+                Optional.ofNullable(config.cookievalor).ifPresent(cookie -> {
+                    exchange.getResponse().addCookie(ResponseCookie.from(config.cookienombre,cookie).build());
                 });
                 logger.info("ejecutando post gateway filter factory" + config.mensaje);
             }));

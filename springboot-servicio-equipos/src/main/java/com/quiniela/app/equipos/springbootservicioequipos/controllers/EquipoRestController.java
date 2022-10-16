@@ -74,7 +74,8 @@ private final Logger logger = LoggerFactory.getLogger(EquipoRestController.class
     }
     
     
-    @PutMapping("/editar/{id}"){
+    @PutMapping("/editar/{id}")
+    public void eliminar(@PathVariable Long id){
     	
     }
     

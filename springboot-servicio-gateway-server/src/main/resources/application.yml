@@ -8,7 +8,7 @@ spring:
             - Path=/api/equipos/**
           filters:
             - StripPrefix=2
-            - Name: Quiniela
+            - name: Quiniela
               args:
                 mensaje: hola mi mensaje personalizado
                 cookieNombre: usuario
