@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,7 +37,7 @@ class ApuestasServiceTest {
         apuesta.setGoles1(2L);
         apuesta.setGoles2(3L);
         apuesta.setFase(1L);
-        apuesta.setFecha(new Date("12/12/2022"));
+        apuesta.setFecha(this.obtenerFecha("12/12/2022"));
         apuesta.setGoles1(1l);
         apuesta.setGoles2(2l);
         apuesta.setResultado("E");
@@ -59,5 +62,18 @@ class ApuestasServiceTest {
 
     @Test
     void findById() {
+    }
+
+
+    Date obtenerFecha(String fecha){
+
+        DateFormat fechaFormateada = new SimpleDateFormat("dd/MM/yyyy  HH:mm:ss z");
+        Date fechaDevuelta = null;
+        try {
+            fechaDevuelta = fechaFormateada.parse(fecha);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return fechaDevuelta;
     }
 }

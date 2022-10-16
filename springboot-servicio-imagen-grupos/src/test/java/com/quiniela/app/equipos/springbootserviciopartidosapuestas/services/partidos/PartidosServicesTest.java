@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,7 +33,7 @@ class PartidosServicesTest {
         partido.setEqId1(2L);
         partido.setEqId2(3L);
         partido.setFase(1L);
-        partido.setFecha(new Date("12/12/2022"));
+        partido.setFecha(this.obtenerFecha("12/12/2022"));
         partido.setGoles1(1l);
         partido.setGoles2(2l);
         partido.setHora("12:00");
@@ -66,7 +69,7 @@ class PartidosServicesTest {
         partido2.setEqId1(2L);
         partido2.setEqId2(3L);
         partido2.setFase(1L);
-        partido2.setFecha(new Date("12/12/2022"));
+        partido2.setFecha(this.obtenerFecha("12/12/2022"));
         partido2.setGoles1(1l);
         partido2.setGoles2(2l);
         partido2.setHora("12:00");
@@ -75,5 +78,18 @@ class PartidosServicesTest {
         Partidos p = partidosService.findById(2L);
         System.out.println(p.getHora());
         assertNotNull(p);
+    }
+
+    Date obtenerFecha(String fecha){
+
+        DateFormat fechaFormateada = new SimpleDateFormat("dd/MM/yyyy  HH:mm:ss z");
+        Date fechaDevuelta = null;
+        try {
+            fechaDevuelta = fechaFormateada.parse(fecha);
+        } catch (ParseException e) {
+
+            e.printStackTrace();
+        }
+        return fechaDevuelta;
     }
 }

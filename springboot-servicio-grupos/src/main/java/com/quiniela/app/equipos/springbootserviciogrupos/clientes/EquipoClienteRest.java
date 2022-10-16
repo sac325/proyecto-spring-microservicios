@@ -2,7 +2,6 @@ package com.quiniela.app.equipos.springbootserviciogrupos.clientes;
 
 import com.quiniela.app.commons.models.entity.Equipo;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
