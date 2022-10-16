@@ -73,10 +73,25 @@ private final Logger logger = LoggerFactory.getLogger(EquipoRestController.class
     	return equipoService.save(equipo);
     }
     
-    
     @PutMapping("/editar/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Equipo editar(@RequestBody Equipo equipo, @PathVariable Long id){
+    Equipo equipoE =	equipoService.findById(id);
+    
+    equipoE.setNombre(equipo.getNombre());
+    equipoE.setImageSize(equipo.getImageSize());
+    equipoE.setImageData(equipo.getImageData());
+    equipoE.setFilename(equipo.getFilename());
+    equipoE.setContentType(equipo.getContentType());
+    return equipoService.save(equipo);
+
+    }
+    
+    @PutMapping("/eliminar/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminar(@PathVariable Long id){
-    	
+    	equipoService.deleteById(id);
+        
     }
     
     
