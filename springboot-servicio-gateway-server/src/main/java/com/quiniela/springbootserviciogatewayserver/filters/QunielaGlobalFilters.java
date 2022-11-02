@@ -18,17 +18,20 @@ public class QunielaGlobalFilters implements GlobalFilter {
     private final Logger logger = LoggerFactory.getLogger(QunielaGlobalFilters.class);
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        
         logger.info("elecutando el filtro pre");
-exchange.getRequest().mutate().headers(h-> h.add("token", "123456"));
+        
+//        exchange.getRequest().mutate().headers(h-> h.add("token", "123456"));
+        
         return chain.filter(exchange).then(Mono.fromRunnable(()->{
             logger.info("elecutando el filtro post");
 
             Optional.ofNullable(exchange.getRequest().getHeaders().getFirst("token")).ifPresent(valor ->{
-                exchange.getResponse().getHeaders().add("token",valor);
+//                exchange.getResponse().getHeaders().add("token",valor);
             });
 
-            exchange.getResponse().getCookies().add("color", ResponseCookie.from("color","rojo").build());
-            exchange.getResponse().getHeaders().setContentType(MediaType.TEXT_PLAIN);
+//            exchange.getResponse().getCookies().add("color", ResponseCookie.from("color","rojo").build());
+//            exchange.getResponse().getHeaders().setContentType(MediaType.TEXT_PLAIN);
         }));
     }
 }

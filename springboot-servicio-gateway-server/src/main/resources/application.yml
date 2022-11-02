@@ -1,6 +1,12 @@
 spring:
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          "[/**]":
+            allowedOrigins: "http://localhost:4200"
+            allowedMethods:
+              -GET
       routes:
         - id: servicio-equipos
           uri: lb://servicio-equipos
@@ -8,15 +14,10 @@ spring:
             - Path=/api/equipos/**
           filters:
             - StripPrefix=2
-            - name: Quiniela
-              args:
-                mensaje: hola mi mensaje personalizado
-                cookieNombre: usuario
-                cookieValor: SergioCabrera
         - id: servicio-grupos
           uri: lb://servicio-grupos
           predicates:
-            - Path=/api/datos/**
+            - Path=/api/grupos/**
           filters:
             - StripPrefix=2
         - id: servicio-partidos-apuestas
@@ -25,3 +26,15 @@ spring:
             - Path=/api/partidos-apuestas/datos/**
           filters:
               - StripPrefix=3
+        - id: springboot-servicio-usuarios
+          uri: lb://springboot-servicio-usuarios
+          predicates:
+            - Path=/api/usuarios/datos/**
+          filters:
+              - StripPrefix=3
+        - id: servicio-oauth
+          uri: lb://servicio-oauth
+          predicates:
+          - Path=/api/security/**
+          filters:
+          - StripPrefix=2
