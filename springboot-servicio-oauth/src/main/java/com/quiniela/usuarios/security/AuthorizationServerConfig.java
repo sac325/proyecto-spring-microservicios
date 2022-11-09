@@ -1,6 +1,7 @@
 package com.quiniela.usuarios.security;
 
 import java.util.Arrays;
+import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -71,7 +72,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
-		tokenConverter.setSigningKey("algun_codigo_secreto_aeiou");
+		tokenConverter.setSigningKey(Base64.getEncoder().encodeToString("algun_codigo_secreto_aeiou".getBytes()));
 		return tokenConverter;
 	}
 	
