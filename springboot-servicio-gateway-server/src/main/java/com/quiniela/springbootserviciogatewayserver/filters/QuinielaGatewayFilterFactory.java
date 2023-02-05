@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.Optional;
 
-@Component
+
 public class QuinielaGatewayFilterFactory extends AbstractGatewayFilterFactory<QuinielaGatewayFilterFactory.Configuracion> {
 
 private final Logger logger = LoggerFactory.getLogger(QuinielaGatewayFilterFactory.class);

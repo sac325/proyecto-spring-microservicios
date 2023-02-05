@@ -3,6 +3,8 @@ package com.quiniela.app.equipos.springbootservicioequipos.services;
 import com.quiniela.app.commons.models.entity.Equipo;
 import com.quiniela.app.equipos.springbootservicioequipos.models.dao.IEquipoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +21,13 @@ public class EquipoService implements IEquipoService{
     public List<Equipo> findAll() {
         return equipoDao.findAll();
     }
+    //implements find all pageable
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Equipo> findAll(Pageable pageable) {
+        return equipoDao.findAll(pageable);
+    }
+
 
     @Override
     public Equipo findById(Long id) {

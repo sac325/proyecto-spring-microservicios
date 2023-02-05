@@ -4,13 +4,18 @@ import com.quiniela.app.commons.models.entity.Equipo;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 public interface IEquipoService {
 
-    List<Equipo> findAll();
+    public List<Equipo> findAll();
 
-    Equipo findById(Long id);
+    public Page<Equipo> findAll(Pageable pageable);
+
+    public Equipo findById(Long id);
     
-    Equipo save(Equipo equipo);
+    public Equipo save(Equipo equipo);
     
-    void deleteById(Long id);
+    public void deleteById(Long id);
 }

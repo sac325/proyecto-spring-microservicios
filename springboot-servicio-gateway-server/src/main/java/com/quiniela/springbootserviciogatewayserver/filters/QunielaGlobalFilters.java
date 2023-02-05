@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.Optional;
 
-@Component
+
 public class QunielaGlobalFilters implements GlobalFilter {
 
     private final Logger logger = LoggerFactory.getLogger(QunielaGlobalFilters.class);

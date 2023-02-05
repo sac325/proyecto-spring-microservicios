@@ -1,6 +1,9 @@
 package com.quiniela.app.commons.models.entity;
 
 import javax.persistence.*;
+
+import org.springframework.context.annotation.Description;
+
 import java.io.Serializable;
 
 @Entity
@@ -10,16 +13,16 @@ public class Equipo implements Serializable {
 
     private Long id;
     private String nombre;
+    private String description; 
     private String filename;
     private String contentType;
-    private String imageSize;
-    @Lob
+    private Long imageSize;
     private byte[] imageData;
 
     public Equipo() {
     }
 
-    public Equipo(String nombre, String filename, String contentType, String imageSize, byte[] imageData) {
+    public Equipo(String nombre, String filename, String contentType, Long imageSize, byte[] imageData) {
         this.nombre = nombre;
         this.filename = filename;
         this.contentType = contentType;
@@ -38,7 +41,7 @@ public class Equipo implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "equipo", unique = true, nullable = false)
+    @Column(name = "nombre", unique = true, nullable = true)
     public String getNombre() {
         return nombre;
     }
@@ -47,7 +50,7 @@ public class Equipo implements Serializable {
         this.nombre = nombre;
     }
 
-    @Column(name = "filename", nullable = false)
+    @Column(name = "filename", nullable = true)
     public String getFilename() {
         return filename;
     }
@@ -56,7 +59,7 @@ public class Equipo implements Serializable {
         this.filename = filename;
     }
 
-    @Column(name = "content_type", nullable = false)
+    @Column(name = "content_type", nullable = true)
     public String getContentType() {
         return contentType;
     }
@@ -65,16 +68,16 @@ public class Equipo implements Serializable {
         this.contentType = contentType;
     }
 
-    @Column(name = "image_size", nullable = false)
-    public String getImageSize() {
+    @Column(name = "image_size", nullable = true)
+    public Long getImageSize() {
         return imageSize;
     }
 
-    public void setImageSize(String imageSize) {
+    public void setImageSize(Long imageSize) {
         this.imageSize = imageSize;
     }
 
-    @Column(name = "image_data", nullable = false)
+    @Column(name = "image_data", nullable = true)
     public byte[] getImageData() {
         return imageData;
     }
@@ -82,4 +85,14 @@ public class Equipo implements Serializable {
     public void setImageData(byte[] imageData) {
         this.imageData = imageData;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    
 }
