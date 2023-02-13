@@ -1,17 +1,6 @@
 spring:
   cloud:
     gateway:
-      globalcors:
-        cors-configurations:
-          "[/**]":
-            allowedOrigins: "http://localhost:4200"
-            allow-credentials: true
-            allowedMethods:
-              - GET
-              - POST
-              - DELETE
-              - PUT
-              - OPTIONS
       routes:
         - id: servicio-equipos
           uri: lb://servicio-equipos
