@@ -5,8 +5,12 @@ import com.quiniela.app.commons.models.entity.ImagenGrupos;
 import java.util.List;
 
 public interface IImagenGruposService {
-
     List<ImagenGrupos> findAll();
 
     ImagenGrupos findById(Long id);
+
+    ImagenGrupos save(ImagenGrupos imagenGrupos);
+
+    void deleteById(Long id);
 }
+

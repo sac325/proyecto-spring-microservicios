@@ -29,5 +29,11 @@ public class Apuestas   implements Serializable{
     String usuarioApostador;
     Long puntaje;
     Long fase;
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 }

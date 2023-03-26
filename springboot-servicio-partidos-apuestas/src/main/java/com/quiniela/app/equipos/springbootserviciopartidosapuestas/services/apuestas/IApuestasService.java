@@ -5,8 +5,12 @@ import com.quiniela.app.equipos.springbootserviciopartidosapuestas.models.dao.Ap
 import java.util.List;
 
 public interface IApuestasService {
-
     List<Apuestas> findAll();
 
     Apuestas findById(Long id);
+
+    Apuestas save(Apuestas apuestas);
+
+    void deleteById(Long id);
 }
+

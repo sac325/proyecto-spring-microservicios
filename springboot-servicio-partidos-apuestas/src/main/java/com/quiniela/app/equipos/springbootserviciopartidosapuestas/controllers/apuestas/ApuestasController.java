@@ -15,20 +15,38 @@ import java.util.List;
 public class ApuestasController {
 
     @Autowired
-    private IApuestasService ApuestasService;
+    private IApuestasService apuestasService;
 
     @GetMapping("/listar")
-    public List<Apuestas> listar(){
-        return  ApuestasService.findAll();
+    public List<Apuestas> listar() {
+        return apuestasService.findAll();
     }
 
     @GetMapping("/listar/{id}")
-    public Apuestas Apuestas(@PathVariable Long id){
-        return ApuestasService.findById(id);
+    public Apuestas apuestas(@PathVariable Long id) {
+        return apuestasService.findById(id);
     }
 
     @PostMapping("/guardar")
-    public ResponseEntity<?> ApuestasGuardar(@RequestBody Apuestas Apuestas){
-        return ResponseEntity.ok(HttpStatus.OK);
+    public ResponseEntity<Apuestas> apuestasGuardar(@RequestBody Apuestas apuestas) {
+        Apuestas apuestasGuardadas = apuestasService.save(apuestas);
+        return ResponseEntity.ok(apuestasGuardadas);
+    }
+
+    @PutMapping("/actualizar/{id}")
+    public ResponseEntity<Apuestas> apuestasActualizar(@RequestBody Apuestas apuestas, @PathVariable Long id) {
+        Apuestas a = apuestasService.findById(id);
+        if (a != null) {
+            apuestas.setId(id);
+            Apuestas apuestasActualizadas = apuestasService.save(apuestas);
+            return ResponseEntity.ok(apuestasActualizadas);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/eliminar/{id}")
+    public void eliminar(@PathVariable Long id) {
+        apuestasService.deleteById(id);
     }
 }
+

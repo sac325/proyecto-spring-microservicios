@@ -9,20 +9,30 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class PartidosServices implements IPartidosService{
-
+public class PartidosServices implements IPartidosService {
 
     @Autowired
-    IPartidosRepository partidosDao;
+    private IPartidosRepository partidosRepository;
 
     @Override
     @Transactional(readOnly = true)
     public List<Partidos> findAll() {
-        return this.partidosDao.findAll();
+        return partidosRepository.findAll();
     }
 
     @Override
     public Partidos findById(Long id) {
-        return this.partidosDao.findById(id).orElse(null);
+        return partidosRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Partidos save(Partidos partidos) {
+        return partidosRepository.save(partidos);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        partidosRepository.deleteById(id);
     }
 }
+

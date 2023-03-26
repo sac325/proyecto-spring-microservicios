@@ -26,6 +26,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	
 	@Autowired
 	private Environment env;
+	
+	@Autowired
+    private JwtConfig jwtConfig;
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -72,7 +75,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
-		tokenConverter.setSigningKey(Base64.getEncoder().encodeToString("algun_codigo_secreto_aeiou".getBytes()));
+		tokenConverter.setKeyPair(this.jwtConfig.keyPair());//.setSigningKey(Base64.getEncoder().encodeToString("algun_codigo_secreto_aeiou".getBytes()));
 		return tokenConverter;
 	}
 	

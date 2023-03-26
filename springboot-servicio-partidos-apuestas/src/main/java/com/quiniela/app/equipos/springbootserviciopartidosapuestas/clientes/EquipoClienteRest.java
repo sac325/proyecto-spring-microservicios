@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 //@FeignClient(name="servicio-equipos", url = "localhost:8001")
-@FeignClient(name = "servicio-equipos", url = "localhost:8001")
+@FeignClient(name = "servicio-equipos")
 public interface EquipoClienteRest {
 
 
@@ -16,5 +16,5 @@ public interface EquipoClienteRest {
     public List<Equipo> listar();
 
     @GetMapping("/listar/{id}")
-    public Equipo equipo(@PathVariable Long id);
+    public Equipo equipo(@PathVariable(value = "id") Long id);
 }

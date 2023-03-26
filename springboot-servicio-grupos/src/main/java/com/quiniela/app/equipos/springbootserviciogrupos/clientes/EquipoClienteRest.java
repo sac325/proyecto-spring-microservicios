@@ -16,5 +16,5 @@ public interface EquipoClienteRest {
     public List<Equipo> listar();
 
     @GetMapping("/listar/{id}")
-    public Equipo equipo(@PathVariable Long id);
+    public Equipo equipo(@PathVariable(value = "id") Long id);
 }

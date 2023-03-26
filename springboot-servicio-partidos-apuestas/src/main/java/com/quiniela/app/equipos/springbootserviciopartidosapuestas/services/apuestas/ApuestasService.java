@@ -8,18 +8,28 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ApuestasService implements IApuestasService{
+public class ApuestasService implements IApuestasService {
 
     @Autowired
-    IApuestasRepository apuestaDao;
+    private IApuestasRepository apuestasRepository;
 
     @Override
     public List<Apuestas> findAll() {
-        return this.apuestaDao.findAll();
+        return apuestasRepository.findAll();
     }
 
     @Override
     public Apuestas findById(Long id) {
-        return this.apuestaDao.findById(id).orElse(null);
+        return apuestasRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Apuestas save(Apuestas apuestas) {
+        return apuestasRepository.save(apuestas);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        apuestasRepository.deleteById(id);
     }
 }

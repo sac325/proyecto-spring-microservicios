@@ -26,5 +26,11 @@ public class Partidos  implements Serializable {
     Long eqId2;
     String hora;
     Long fase;
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 }

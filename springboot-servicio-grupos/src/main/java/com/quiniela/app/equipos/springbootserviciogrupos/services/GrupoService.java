@@ -28,35 +28,47 @@ public class GrupoService implements IGrupoService {
         return this.grupoDao.findAll();
     }
 
- /*   @Override
-    @Transactional(readOnly = true)
-    public List<GrupoDto> findAll() {
-        List<Grupo> g= this.grupoDao.findAll();
-        System.out.println("lista de grupos: " + String.valueOf(g.size()));
-        List<GrupoDto>  gDto= g.stream().map(grupo -> this.mapGrupoDto(grupo)).collect(Collectors.toList());
-        System.out.println("lista de grupos: " + String.valueOf(gDto.size()));
-
-        return gDto;
-    }
-*/
     @Override
     public GrupoDto findById(Long id) {
         Grupo g = this.grupoDao.findById(id).orElse(null);
-        if (g != null){
-           return this.mapGrupoDto(g);
-        }else{
+        if (g != null) {
+            return this.mapGrupoDto(g);
+        } else {
             return new GrupoDto();
         }
     }
 
-    private GrupoDto mapGrupoDto(Grupo grupo){
-      //  System.out.println("id del grupo: " + String.valueOf(grupo.getId()));
+    @Override
+    public GrupoDto save(GrupoDto grupoDto) {
+        Grupo g = new Grupo();
+        g.setEmpates(grupoDto.getEmpates());
+        g.setGanados(grupoDto.getGanados());
+        g.setGolesContra(grupoDto.getGolesContra());
+        g.setGolesFavor(grupoDto.getGolesFavor());
+        g.setImageGrupo(grupoDto.getImageGrupo());
+        g.setJugados(grupoDto.getJugados());
+        g.setPerdidos(grupoDto.getPerdidos());
+        g.setPuntaje(grupoDto.getPuntaje());
+        if (grupoDto.getEquipo() != null) {
+            g.setEqId(grupoDto.getEquipo().getId());
+        }
+        g = this.grupoDao.save(g);
+        return this.mapGrupoDto(g);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        this.grupoDao.deleteById(id);
+    }
+
+    private GrupoDto mapGrupoDto(Grupo grupo) {
+
         GrupoDto g = new GrupoDto();
         Equipo e = this.equipos.equipo(grupo.getEqId());
         g.setEmpates(grupo.getEmpates());
-        if (e != null)
-        g.setEquipo(e);
-
+        if (e != null) {
+            g.setEquipo(e);
+        }
         g.setGanados(grupo.getGanados());
         g.setGolesContra(grupo.getGolesContra());
         g.setGolesFavor(grupo.getGolesFavor());
@@ -69,3 +81,4 @@ public class GrupoService implements IGrupoService {
         return g;
     }
 }
+

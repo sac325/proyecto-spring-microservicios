@@ -10,7 +10,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableEurekaClient
 @SpringBootApplication
 @EnableFeignClients
-@EntityScan({"com.quiniela.app.commons.models.entity"})
+@EntityScan({"com.quiniela.app.commons.models.entity","com.quiniela.app.equipos.springbootserviciogrupos.models.dao"})
 public class SpringbootServicioGruposApplication {
 
 	public static void main(String[] args) {

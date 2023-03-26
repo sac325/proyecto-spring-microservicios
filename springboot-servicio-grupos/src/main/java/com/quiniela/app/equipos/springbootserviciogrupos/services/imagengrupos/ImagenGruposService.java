@@ -13,16 +13,27 @@ import java.util.List;
 public class ImagenGruposService implements IImagenGruposService {
 
     @Autowired
-    private IImagenGruposRepository equipoDao;
+    private IImagenGruposRepository imagenGruposRepository;
 
     @Override
     @Transactional(readOnly = true)
     public List<ImagenGrupos> findAll() {
-        return equipoDao.findAll();
+        return imagenGruposRepository.findAll();
     }
 
     @Override
     public ImagenGrupos findById(Long id) {
-        return equipoDao.findById(id).orElse(null);
+        return imagenGruposRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public ImagenGrupos save(ImagenGrupos imagenGrupos) {
+        return imagenGruposRepository.save(imagenGrupos);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        imagenGruposRepository.deleteById(id);
     }
 }
+

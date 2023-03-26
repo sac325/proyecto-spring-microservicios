@@ -33,3 +33,7 @@ build/
 .vscode/
 .metadata/
 .sonarlint/
+JAVA-20230322T183648Z-001/JAVA/pom.xml
+JAVA-20230322T183648Z-001/JAVA/README.md
+JAVA-20230322T183648Z-001/JAVA/src/main/java/cl/minsegpres/pisee/trazabilidadApi/MainVerticle.java
+JAVA-20230322T183648Z-001/JAVA/src/main/resources/log4j.properties
